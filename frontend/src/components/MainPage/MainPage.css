@@ -1,0 +1,134 @@
+.book-information {
+  position: relative;
+  z-index: -1;
+}
+
+.book-container {
+  width: 800px;
+  margin: 55px;
+  height: 533px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flip-book {
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
+  display: none;
+  background-size: cover;
+}
+
+.page {
+  background-color: #fdfaf7;
+  color: #000;
+  overflow: hidden;
+}
+
+.page .page-content {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.page .page-content .page-header {
+  height: 30px;
+  font-size: 100%;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.page .page-content .page-image {
+  height: 100%;
+  background-size: contain;
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
+.page .page-content .page-text {
+  height: 100%;
+  flex-grow: 1;
+  font-size: 20px;
+  text-align: justify;
+  margin-top: 10px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  border-top: solid 1px #f4e8d7;
+}
+
+.page .page-content .page-footer {
+  height: 30px;
+  border-top: solid 1px #f4e8d7;
+  font-size: 80%;
+  color: #998466;
+}
+
+.page.--left {
+  border-right: 0;
+  box-shadow: inset -7px 0 30px -7px rgba(0, 0, 0, 0.4);
+}
+
+.page.--right {
+  border-left: 0;
+  box-shadow: inset 7px 0 30px -7px rgba(0, 0, 0, 0.4);
+}
+
+.page.--right .page-footer {
+  text-align: right;
+}
+
+.page.hard {
+  background-color: #f2e8d9;
+  border: solid 1px #998466;
+}
+
+.textured {
+  background-position: fixed;
+  background-size: 800px 800px;
+}
+
+.page.page-cover {
+  background-image: url(https://blog.tannernielsen.com/images/leather-texture.png);
+  color: #000;
+}
+
+.gold {
+  position: relative;
+  font-size: 50pt;
+}
+
+.gold::before {
+  content: attr(data-text);
+  text-shadow: -3px -3px 5px rgba(0,0,0,.8), 1px 1px 2px rgba(255,255,255,.45);
+}
+
+.gold::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  top: 0;
+  
+  background-position: inherit;
+  background-size: inherit;
+  background-image: url(https://blog.tannernielsen.com/images/gold-texture.png);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+.page.page-cover.page-cover-top {
+  box-shadow: inset 0px 0 30px 0px rgba(3, 9, 36, 0.5), -2px 0 5px 2px rgba(0, 0, 0, 0.4);
+}
+
+.page.page-cover.page-cover-bottom {
+  box-shadow: inset 0px 0 30px 0px rgba(3, 8, 36, 0.5), 10px 0 8px 0px rgba(0, 0, 0, 0.4);
+}
+
+.stf__block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.24);
+}

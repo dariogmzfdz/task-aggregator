@@ -1,0 +1,39 @@
+.song-container {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    animation: 0.5s ease 0s 1 slideInFromBottom;
+    .img-container {
+      display: flex;
+      border-radius: 12px;
+      overflow: hidden;
+      margin: 0 44px;
+      transition: all 0.2s ease-in;
+      img {
+        width: 100%;
+      }
+    }
+
+    h2,
+    h3 {
+      cursor: default;
+    }
+
+    h2 {
+      padding: 10px 16px 0px 16px;
+    }
+
+    h3 {
+      font-size: 1rem;
+      margin-top: 0;
+      margin-bottom: 16px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .img-container {
+      border-radius: 50% !important;
+    }
+}

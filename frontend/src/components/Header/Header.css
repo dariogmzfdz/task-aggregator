@@ -1,0 +1,86 @@
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    height: 70px;
+    background-color: rgb(136, 136, 136);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.profile-container {
+    position: absolute;
+    display: flex;
+    width: 101px;
+    height: 101px;
+    left: 89px;
+    top: 20px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.profile-settings {
+    position: absolute;
+    left: 70px;
+    top: 70px;
+    width: 38px;
+    height: 38px;
+    background: url("../../assets/img/user-settings.png");
+    background-size: 100% 100%;
+    background-position: center;
+    border-radius: 53px;
+
+    cursor: pointer;
+}
+
+.widget {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 190px;
+    height: 85px;
+    left: 225px;
+    top: 24px;
+    background: #D9D9D9;
+    border-radius: 53px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.time-container {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 30px;
+    color: #000000;
+}
+
+.weather-container {
+    display: flex;
+    width: 70px;
+    height: 30px;
+}
+
+.temperature {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 800;
+    font-size: 24px;
+    color: #000000;
+}
+
+.weather-icon {
+    width: 30px;
+    height: 30px;
+    background: url("../../assets/img/weather-icon.png");
+    background-size: 50px 50px;
+    background-position: center;
+    border-radius: 53px;
+}

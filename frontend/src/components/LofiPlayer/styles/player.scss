@@ -1,0 +1,123 @@
+.player {
+    width: 70%;
+    max-width: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    animation: 0.5s ease 0s 1 slideInFromBottom;
+    p {
+      color: rgb(165, 165, 165);
+    }
+  }
+  .time-control {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    input {
+      width: 100%;
+      -webkit-appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    p {
+      padding: 0 8px 0;
+      font-size: 13px;
+      cursor: default;
+    }
+  }
+  .volume-control {
+    display: flex;
+    width: 100%;
+  
+    justify-content: space-between;
+    input {
+      width: 100%;
+      -webkit-appearance: none;
+      background: transparent;
+      cursor: pointer;
+    }
+    .volume-down {
+      margin: 0 7px 0 7px;
+    }
+    div {
+      display: flex;
+      align-items: center;
+      padding: 0 12px;
+      color: rgb(165, 165, 165);
+    }
+    svg {
+      font-size: 1.3em;
+    }
+  }
+  @media screen and (max-width: 500px) {
+    .volume-control {
+      display: none;
+    }
+  }
+  
+  .play-control {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 200px;
+    padding: 1rem 0;
+    // border: 1px solid white;
+    svg {
+      cursor: pointer;
+      color: rgb(165, 165, 165);
+    }
+    svg:hover {
+      transform: scale(0.95);
+      color: rgb(137, 137, 137);
+    }
+    .fa-play {
+      margin-left: 7px;
+    }
+  }
+  
+  input[type='range']:focus {
+    outline: none;
+  }
+  input[type='range']::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+  }
+  input[type='range']::-moz-range-thumb {
+    -webkit-appearance: none;
+    background: transparent;
+    border: none;
+  }
+  .track {
+    background: lightblue;
+    width: 100%;
+    height: 1rem;
+    margin: 1rem 0rem;
+    position: relative;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .animate-track {
+    background: rgb(204, 204, 204);
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0%);
+    pointer-events: none;
+  }
+  
+  // @media screen and (max-width: 768px) {
+  //   .time-control {
+  //     width: 90%;
+  //   }
+  //   .volume-control {
+  //     width: 75%;
+  //   }
+  //   .play-control {
+  //     width: 60%;
+  //   }
+  // }
