@@ -15,7 +15,7 @@ mongoose
   .connect(dbURI)
   .then(
     (result) => app.listen(port),
-    console.log("Server is running Port 3000")
+    console.log(`Server is running Port http://localhost:${port}`)
   )
   .catch((err) => console.log(err));
 

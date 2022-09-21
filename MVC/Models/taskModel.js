@@ -16,14 +16,19 @@ const TaskSchema = Schema({
     //required: true,
     default: false,
   },
+  is_important:{
+    type: Boolean,
+   // required: true,
+    default: false,
+  },
   date_created: {
     type: Date,
-    // required: true,
+   // required: true,
     default: new Date(),
   },
   date_finish: {
     type: Date,
-    // required: true,
+   // required: true,
     default: null,
   },
 });
