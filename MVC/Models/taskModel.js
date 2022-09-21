@@ -2,6 +2,8 @@ const mongoose = require("mongoose");
 
 const Schema = mongoose.Schema;
 
+const ObjectId = Schema.ObjectId;
+
 const TaskSchema = Schema({
   name: {
     type: "string",
@@ -31,6 +33,10 @@ const TaskSchema = Schema({
    // required: true,
     default: null,
   },
+  owner: { // creates owner parameter and transforms it in type ObjectId
+    type: ObjectId,
+    require: true,
+}
 });
 const Tasks = mongoose.model("tasks", TaskSchema);
 module.exports = Tasks;

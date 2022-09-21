@@ -26,4 +26,14 @@ function secureRoute(req, res, next){
     }
 }
 
-    module.exports = {secureRoute}
+// create function to recover users 
+
+function getUser(req, res){
+    //recover token
+    const token = req.headers.authoritzation.replace(/['"]+/g, "");
+    // decode token
+    const payload = jwt.decodeToken(token, process.env.SECRET_KEY);
+    return payload;
+}
+
+    module.exports = {secureRoute, getUser}
