@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 
-//FONT AWESOME
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -28,8 +27,8 @@ const Player = ({
     audioRef.current.volume = volumeLvl;
   });
 
-  //Event Handlers
-  //This function is used to Play currentSong selected
+  // Event Handlers
+  // This function is used to Play currentSong selected
   const playSongHandler = () => {
     if (isPlaying) {
       audioRef.current.pause();
@@ -39,7 +38,7 @@ const Player = ({
       setIsPlaying(!isPlaying);
     }
   };
-  //FUNCTION TO AVOID USING USEEFFECT
+  // FUNCTION TO AVOID USING USEEFFECT
   const activeLibraryHandler = (nextPrev) => {
     const newSongs = songs.map((song) => {
       if (song.id === nextPrev.id) {
@@ -57,41 +56,41 @@ const Player = ({
     setSongs(newSongs);
   };
 
-  //Skip and reverse to track Event Handler
+  // Skip and reverse to track Event Handler
   const skipTrackHandler = async (direction) => {
-    //goes to state holding playlist object and determines where in the array current song is
+    // Goes to state holding playlist object and determines where in the array current song is
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
-    //console.log(currentIndex);
+    // console.log(currentIndex);
     if (direction === "skip-forward") {
       await setCurrentSong(songs[(currentIndex + 1) % songs.length]); //If index reaches song.length it makes value 0
       activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
     }
     if (direction === "skip-back") {
-      //check to see if the index is negative
+      // Check to see if the index is negative
       if ((currentIndex - 1) % songs.length === -1) {
-        //if index is -1 set index to last index
+        // If index is -1 set index to last index
         await setCurrentSong(songs[songs.length - 1]);
         activeLibraryHandler(songs[songs.length - 1]);
         if (isPlaying) audioRef.current.play();
         return;
       }
-      //If index is Not -1 then subtract 1
+      // If index is Not -1 then subtract 1
       await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
       activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
     }
     if (isPlaying) audioRef.current.play();
   };
 
-  //The function is used to convert the duration value into time
-  //Ex. 100seconds = 1min and 40seconds || 1:40
+  // The function is used to convert the duration value into time
+  // Ex. 100seconds = 1min and 40seconds || 1:40
   const getTime = (time) => {
     return (
       Math.floor(time / 60) + ":" + ("0" + Math.floor(time % 60)).slice(-2)
     );
   };
 
-  //Must add onChange handler to avoid input error
-  //When there is a change made to the audio bar input tag the songInfo state updates the currentTime
+  // Must add onChange handler to avoid input error
+  // When there is a change made to the audio bar input tag the songInfo state updates the currentTime
   const dragHandler = (e) => {
     //gets currentTime from audio tag in App.js
     audioRef.current.currentTime = e.target.value;
