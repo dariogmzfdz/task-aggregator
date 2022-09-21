@@ -47,6 +47,7 @@ async function login(req, res) {
             //Create token with 24h of validation establish in createToken func. in jwtServices.js
             token = await jwt.createToken(userData, "24h");
             res.status(200).send({ token: token });
+            console.log(token);
           }
         }
       }
