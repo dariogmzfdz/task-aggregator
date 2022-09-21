@@ -1,8 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const taskRoutes = require("./MVC/routes/taskRoutes");
 const port = 3000;
+
+
+const taskRoutes = require("./MVC/routes/taskRoutes");
+const userRoutes = require("./MVC/routes/userRoutes")
+
 
 //Data base name = Tasks
 const dbURI = "mongodb://localhost:27017/Tasks";
@@ -10,6 +14,8 @@ const dbURI = "mongodb://localhost:27017/Tasks";
 const app = express();
 app.use(express.json());
 app.use(taskRoutes);
+app.use(userRoutes)
+
 
 mongoose
   .connect(dbURI)
