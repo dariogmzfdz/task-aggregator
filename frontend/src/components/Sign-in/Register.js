@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import "./sign.css"
 
 export function Register() {
   const { signup } = useAuth();
@@ -20,13 +21,21 @@ export function Register() {
       await signup(user.email, user.password);
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      console.log(error.code);
+      if (error.code === "auth/internal-error"){
+      setError("Correo invalido" )
+      }
+      if (error.code === "auth/email-already-in-use" ) return setError("en uso ");
+
+      if (error.code === "auth/missing-email") return setError("Introduce email")
+      if (error.code === "auth/invalid-email") return setError("Email no existe")
+      if (error.code === "auth/weak-password") return setError("La contraseña debe tener 6 carácteres")
     }
   };
 
   return (
     <div className="w-full max-w-xs m-auto text-black">
- {error &&  <h3 className='errTitle'>{error}</h3>}
+ 
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
@@ -71,6 +80,7 @@ export function Register() {
           Login
         </Link>
       </p>
+      {error &&  <h3 className='errTitle'>{error}</h3>}
     </div>
   );
 }

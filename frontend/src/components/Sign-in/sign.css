@@ -3,9 +3,13 @@
     text-align:center;
 }
 .bg-slate-50 img{
-    margin:1rem 11rem;
+
     width:35px;
 }
+.bg-slate-50{
+margin: 1rem 4rem ;
+}
+
 .or{
 text-align:center
 }
