@@ -1,4 +1,6 @@
-import { createContext, useContext, useEffect, useState } from "react"
+
+
+import { createContext, useContext, useEffect, useState } from "react";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -13,7 +15,6 @@ import { auth } from "../config/Firebase";
 
 const authContext = createContext();
 
-
 export const useAuth = () => {
   const context = useContext(authContext);
   if (!context) throw new Error("There is no Auth provider");
@@ -24,7 +25,7 @@ export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const signup = (email, password) => {
+  const signin = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
@@ -53,7 +54,7 @@ export function AuthProvider({ children }) {
   return (
     <authContext.Provider
       value={{
-        signup,
+        signin,
         login,
         user,
         logout,
