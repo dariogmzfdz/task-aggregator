@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import "./sign.css";
 
 export function Register() {
-  const { signup } = useAuth();
+  const { signin } = useAuth();
 
   const [user, setUser] = useState({
     email: "",
@@ -17,60 +18,69 @@ export function Register() {
     e.preventDefault();
     setError("");
     try {
-      await signup(user.email, user.password);
+      await signin(user.email, user.password);
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      console.log(error.code);
+      if (error.code === "auth/internal-error") {
+        setError("Correo invalido");
+      }
+      if (error.code === "auth/email-already-in-use")
+        return setError("en uso ");
+
+      if (error.code === "auth/missing-email")
+        return setError("Introduce email");
+      if (error.code === "auth/invalid-email")
+        return setError("Email no existe");
+      if (error.code === "auth/weak-password")
+        return setError("La contraseña debe tener 6 carácteres");
     }
   };
 
   return (
-    <div className="w-full max-w-xs m-auto text-black">
- {error &&  <h3 className='errTitle'>{error}</h3>}
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white shadow-md rounded px-8 pt-6 pb-6 mb-4"
-      >
-        <div className="mb-4">
-          <label
-            htmlFor="email"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Email
-          </label>
+    <div className="signupForm">
+      <form onSubmit={handleSubmit}>
+        <h1>New user</h1>
+        <div className="formInput">
+          <label>Email</label>
           <input
+            controlId="email"
             type="email"
+            required
             onChange={(e) => setUser({ ...user, email: e.target.value })}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="youremail@company.tld"
+            //   onChange={(e) => setEmail(e.target.value)}
           />
         </div>
-
-        <div className="mb-4">
-          <label
-            htmlFor="password"
-            className="block text-gray-700 text-sm font-bold mb-2"
-          >
-            Password
-          </label>
+        <div className="formInput">
+          <label>Password</label>
           <input
             type="password"
+            required
             onChange={(e) => setUser({ ...user, password: e.target.value })}
             className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-            placeholder="*************"
+            placeholder="password"
+            //   onChange={(e) => setPassword(e.target.value)}
           />
         </div>
+        <div className="formFooter">
+          <div className="submitButtons">
+            <div>
+              <button type="submit">Register</button>
+            </div>
+            <div className="signupGroup">
+              Already have an account?
+              <div>
+                <Link to="/login" className="text-blue-700 hover:text-blue-900">
+                  <button>Sign up</button>
+                </Link>
 
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-          Register
-        </button>
+                <div className="socialIcons"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </form>
-      <p className="my-4 text-sm flex justify-between px-3">
-        Already have an Account?
-        <Link to="/login" className="text-blue-700 hover:text-blue-900">
-          Login
-        </Link>
-      </p>
     </div>
   );
 }

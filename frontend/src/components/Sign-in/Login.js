@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
-
+import "./sign.css";
 
 export function Login() {
   const [user, setUser] = useState({
@@ -47,29 +47,31 @@ export function Login() {
   };
 
   return (
-    <div className="w-full max-w-xs m-auto">
+    <div className="w-full max-w-xs m-auto signupForm">
+      <h1>Login</h1>
  {error &&  <h3 className='errTitle'>{error}</h3>}
       <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
-        <div className="mb-4">
+        <div className="mb-4 formInput">
           <label
             htmlFor="email"
             className="block text-gray-700 text-sm font-bold mb-2"
           >
             Email
           </label>
+          
           <input
             type="email"
             name="email"
             id="email"
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="youremail@company.tld"
           />
+          
         </div>
-        <div className="mb-4">
+        <div className="mb-4 formInput">
           <label
             htmlFor="password"
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -81,12 +83,11 @@ export function Login() {
             name="password"
             id="password"
             onChange={handleChange}
-            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             placeholder="*************"
           />
         </div>
-
-        <div className="flex items-center justify-between">
+        <div className="formFooter">
+        <div className="flex items-center justify-between submitButtons">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
@@ -100,6 +101,7 @@ export function Login() {
           >
             Forgot Password?
           </a>
+        </div>
         </div>
       </form>
       <button
