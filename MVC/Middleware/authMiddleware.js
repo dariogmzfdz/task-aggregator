@@ -4,7 +4,7 @@ const jwt = require("../services/jwtServices")
 
 function secureRoute(req, res, next){
 
-    if(!req.headers.authoritzation){
+    if(!req.headers.authorization){
         return res.status(403).send({msg:"Error: authentication credentials are missing"})
     }
     //store the header with the token and replace "" with nothing
