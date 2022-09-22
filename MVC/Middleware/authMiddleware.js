@@ -4,15 +4,19 @@ const jwt = require("../services/jwtServices")
 
 function secureRoute(req, res, next){
 
-    if(!req.headers.authorization){
+//console.log(auth_token);
+//console.log(req.headers.auth_token);
+    if(!req.headers.auth_token){
         return res.status(403).send({msg:"Error: authentication credentials are missing"})
     }
     //store the header with the token and replace "" with nothing
-    const token = req.headers.authoritzation.replace(/['"']+/g, "")
-
+    const token = req.headers.auth_token.replace(/['"]+/g, "")
+   
+   
     try {
         //decode the token
         const payload = jwt.decodeToken(token, process.env.SECRET_KEY);
+        console.log(payload);
         // Make sure that token is still valid
         // payload.exp --> Time after which the JWT expires
         if(payload.exp <= moment().unix()){
@@ -30,7 +34,8 @@ function secureRoute(req, res, next){
 
 function getUser(req, res){
     //recover token
-    const token = req.headers.authoritzation.replace(/['"]+/g, "");
+    //const token = req.headers.authorization.replace(/['"]+/g, "");
+    const token= req.headers.auth_token.replace(/['"]+/g, "")
     // decode token
     const payload = jwt.decodeToken(token, process.env.SECRET_KEY);
     return payload;

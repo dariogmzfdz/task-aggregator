@@ -46,9 +46,9 @@ async function login(req, res) {
             res.status(403).send({ msg: "Error incorrect password" });
           } else {
             //Create token with 24h of validation establish in createToken func. in jwtServices.js
-            token = await jwt.createToken(userData, "24h");
+            const token = await jwt.createToken(userData, "24h");
             res.status(200).send({ token: token });
-            console.log(token);
+            
           }
         }
       }
@@ -61,13 +61,14 @@ async function login(req, res) {
 async function getUser(req, res) {
   const user_token = await authMiddleware.getUser(req, res);
 
+console.log(user_token);
   try {
     const user = await User.findById(user_token.id);
     if (!user) {
       res.status(404).send({ msg: "Error: user doesn't exist" });
-    } else if (!user._id != user_token.id) {
+    } else if (user._id != user_token.id) {
       res.status(403).send({
-        msg: "Forbiden -- Access to this resource on the server is denied!",
+        msg: "Forbiden -- Access to this resource on the server is denied!"
       });
     } else {
       //remove password for sequirity reasons
@@ -78,6 +79,8 @@ async function getUser(req, res) {
     res.status(500).send(error);
   }
 }
+
+
 async function putUser(req, res) {
   //recover id and params
   const userId = req.params.id;
