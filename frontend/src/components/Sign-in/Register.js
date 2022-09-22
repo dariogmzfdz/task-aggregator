@@ -22,18 +22,14 @@ export function Register() {
       navigate("/");
     } catch (error) {
       console.log(error.code);
-      if (error.code === "auth/internal-error") {
-        setError("Correo invalido");
+      if (error.code === "auth/internal-error"){
+      setError("Correo invalido" )
       }
-      if (error.code === "auth/email-already-in-use")
-        return setError("en uso ");
+      if (error.code === "auth/email-already-in-use" ) return setError("en uso ");
 
-      if (error.code === "auth/missing-email")
-        return setError("Introduce email");
-      if (error.code === "auth/invalid-email")
-        return setError("Email no existe");
-      if (error.code === "auth/weak-password")
-        return setError("La contraseña debe tener 6 carácteres");
+      if (error.code === "auth/missing-email") return setError("Introduce email")
+      if (error.code === "auth/invalid-email") return setError("Email no existe")
+      if (error.code === "auth/weak-password") return setError("La contraseña debe tener 6 carácteres")
     }
   };
 
