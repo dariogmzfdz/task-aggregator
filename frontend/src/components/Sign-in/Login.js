@@ -20,9 +20,7 @@ export function Login() {
       navigate("/");
     } catch (error) {
       console.log(error.code)
-      if (error.code === "auth/internal-error"){
-        setError("Correo invalido" )
-        }
+      if (error.code === "auth/internal-error")return  setError("Correo invalido" );
         if (error.code === "auth/missing-email") return setError("Introduce email");
         if (error.code === "auth/invalid-email") return setError("Email no existe");
         if (error.code === "auth/weak-password") return setError("La contraseña debe tener 6 carácteres");
@@ -30,7 +28,6 @@ export function Login() {
         if (error.code === "auth/too-many-requests") return setError("Demasiados intentos. Intente cambiar la contraseña");
         if (error.code === "auth/wrong-password" ) return setError("Contraseña errónea");
         if (error.code === "auth/email-already-in-use" ) return setError("en uso ");
-        
       
     }
   };
@@ -43,9 +40,11 @@ export function Login() {
       await loginWithGoogle();
       navigate("/");
     } catch (error) {
-      setError(error.message);
+      if (error.code === "auth/popup-closed-by-user") return setError("Popup Cerrado");
+      ;
     }
   };
+
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
@@ -59,12 +58,12 @@ export function Login() {
   };
 
   return (
-    <div className="w-full max-w-xs m-auto">
+    <div className="signupForm">
    <form
         onSubmit={handleSubmit}
         className="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
       >
-        <div className="mb-4">
+        <div className="formInput">
           <label
             htmlFor="email"
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -80,7 +79,7 @@ export function Login() {
             placeholder="youremail@company.tld"
           />
         </div>
-        <div className="mb-4">
+        <div className="formInput">
           <label
             htmlFor="password"
             className="block text-gray-700 text-sm font-bold mb-2"
@@ -97,7 +96,7 @@ export function Login() {
           />
         </div>
 
-        <div className="flex items-center justify-between">
+        <div className="submitButtons">
           <button
             className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
             type="submit"
@@ -115,17 +114,19 @@ export function Login() {
       </form>
       <button
         onClick={handleGoogleSignin}
-        className="bg-slate-50 hover:bg-slate-200 text-black  shadow rounded border-2 border-gray-300 py-2 px-4 w-full"
+        className="signupGroup"
       >
              <img src='https://rotulosmatesanz.com/wp-content/uploads/2017/09/2000px-Google_G_Logo.svg_.png' alt='google'/>
 
       </button>
-      <p className="my-4 text-sm flex justify-between px-3">
+   
+      <div className="signupGroup">
         Don't have an account?
         <Link to="/register" className="text-blue-700 hover:text-blue-900">
-          Register
+          <h3>Register</h3>
         </Link>
-      </p>             {error &&  <h3 className='errTitle'>{error}</h3>}
+      </div>     
+              {error &&  <h3 className='errTitle'>{error}</h3>}
 
     
     </div>
