@@ -129,6 +129,10 @@ const Page = React.forwardRef((props, ref) => {
           >
             <div>
               <FormTodo handleAddItem={handleAddItem} />
+<<<<<<< HEAD
+=======
+              {/*(C)*/}
+>>>>>>> main-page
               <TaskList list={list} setList={setList} />
             </div>
           </Modal.Body>

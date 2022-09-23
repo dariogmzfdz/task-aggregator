@@ -1,0 +1,47 @@
+h1, h2, h3 {
+    // color: rgba(72, 72, 72, 0.8);
+    color: rgb(165, 165, 165);
+}
+
+h3, h4 {
+    font-weight: 400;
+    color: rgb(137, 137, 137);
+}
+
+.App {
+    height: var(--viewport-height);
+    transition: all 0.2s ease;
+}
+
+  //ANIMATIONS
+@keyframes slideInFromBottom {
+  0% {
+    transform: translate(0%, 200px);
+    opacity: 0;
+  }
+  100% {
+    transform: translate(0%, 0px);
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .library-active {
+    padding-left: 30%;
+  }
+}
+
+@import './song';
+@import './player';
+@import './musicContainer';

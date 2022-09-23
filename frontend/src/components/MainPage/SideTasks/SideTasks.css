@@ -1,0 +1,39 @@
+.tasks {
+    width: 368px;
+    height: 643px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+}
+
+.tasks-header {
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 600;
+    font-size: 32px;
+    text-align: center;
+    color: #fff;
+}
+
+.tasks-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px;
+    padding: 5px;
+    width: 225px;
+    height: 60px;
+    background: #FFFFFF;
+    color: #000000;
+    border-radius: 20px;
+}
+
+.tasks-title{
+    font-family: 'Roboto';
+    font-style: italic;
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 16px;
+}

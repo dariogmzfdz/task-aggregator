@@ -1,0 +1,28 @@
+{
+  "name": "task-aggregator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "backend": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dariogmzfdz/task-aggregator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dariogmzfdz/task-aggregator/issues"
+  },
+  "homepage": "https://github.com/dariogmzfdz/task-aggregator#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "firebase": "^9.10.0",
+    "mongoose": "^6.6.1",
+    "nodemon": "^2.0.20"
+  }
+}

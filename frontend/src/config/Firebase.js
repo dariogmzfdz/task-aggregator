@@ -1,8 +1,5 @@
-
 import { initializeApp } from "firebase/app";
-import { getAuth } from 'firebase/auth' ;
-
-
+import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCvKnQkVJqBqgCRWURJBzhabkUF_zTNQRU",
@@ -10,10 +7,9 @@ const firebaseConfig = {
   projectId: "agenda-5ea82",
   storageBucket: "agenda-5ea82.appspot.com",
   messagingSenderId: "263282657707",
-  appId: "1:263282657707:web:eb8e90f4efc22ea6de6aee"
+  appId: "1:263282657707:web:eb8e90f4efc22ea6de6aee",
 };
-
 
 const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app)
+export const auth = getAuth(app);
