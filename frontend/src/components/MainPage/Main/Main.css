@@ -3,15 +3,6 @@
   z-index: -1;
 }
 
-.book-container {
-  width: 800px;
-  margin: 55px;
-  height: 533px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 .flip-book {
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.5);
   display: none;
@@ -25,8 +16,6 @@
 }
 
 .page .page-content {
-  width: 100%;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -131,4 +120,15 @@
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.24);
+}
+
+.day-item {
+  margin-left: 20px;
+  color: #000;
+  width: 50%;
+  height: 30%;
+}
+
+.month-item {
+  color: #000;
 }

@@ -1,13 +1,11 @@
 .tasks {
-    position: absolute;
-    float: left;
     width: 368px;
     height: 643px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: -1;
+    z-index: 1;
 }
 
 .tasks-header {
