@@ -2,7 +2,7 @@ const Task = require("../Models/taskModel");
 const authMiddleware = require("../Middleware/authMiddleware");
 
 async function postTask(req, res) {
-  // recuperar usuario actual a través del token:
+  // recover user through token
   const user = await authMiddleware.getUser(req, res);
 
   const task = new Task();
@@ -10,7 +10,7 @@ async function postTask(req, res) {
 
   task.name = params.name;
   task.description = params.description;
-  // añadir el owner:
+  // add owner:
   task.owner = user.id;
 
   try {
@@ -27,7 +27,7 @@ async function postTask(req, res) {
 }
 
 async function getTasks(req, res) {
-  // recuperar usuario actual a través del token:
+  // recover current user throgh token:
   const user = await authMiddleware.getUser(req, res);
 
   try {
@@ -45,7 +45,7 @@ async function getTasks(req, res) {
 
 async function getTask(req, res) {
   const taskId = req.params.id;
-  // recuperar usuario actual a través del token:
+  // recover current user throgh token:
   const user = await authMiddleware.getUser(req, res);
 
   try {
@@ -54,7 +54,7 @@ async function getTask(req, res) {
     if (!task) {
       res.status(400).send({ msg: "Error: Task doesn't exists" });
     } else if (task.owner != user.id) {
-      // añadir validación para comprobar que somos el propietario sino dará 403:
+      // reasure that we are the owner of the tasj else error 403:
       res
         .status(403)
         .send({
@@ -68,11 +68,11 @@ async function getTask(req, res) {
   }
 }
 
-// convertir esta función en asincrona para el middleware:
+
 async function putTask(req, res) {
   const taskId = req.params.id;
   const params = req.body;
-  // recuperar usuario actual a través del token:
+  // recover current user throgh token::
   const user = await authMiddleware.getUser(req, res);
 
   try {
@@ -92,7 +92,7 @@ async function putTask(req, res) {
             } else if (!result) {
               res.status(404).send({ msg: "Error: task doesn't exists" });
             } else if (taskData.owner != user.id) {
-              // añadir validación para comprobar que somos el propietario sino dará 403:
+              //  validation that we are the owner else error 403:
               res
                 .status(403)
                 .send({
@@ -112,11 +112,11 @@ async function putTask(req, res) {
 
 async function deleteTask(req, res) {
   const taskId = req.params.id;
-  // recuperar usuario actual a través del token:
+  // recover current user throgh token:
   const user = await authMiddleware.getUser(req, res);
 
   try {
-    // mejorar la seguridad a la hora de eliminar con un callback:
+    
     Task.findById(taskId, (err, taskData) => {
       if (err) {
         res.status(500).send({ msg: "Server status error" });
@@ -124,7 +124,7 @@ async function deleteTask(req, res) {
         if (!taskData) {
           res.status(400).send({ msg: "Error: Task doesn't exists" });
         } else if (taskData.owner != user.id) {
-          // añadir validación para comprobar que somos el propietario sino dará 403:
+          // validation of ownership else 403:
           res
             .status(403)
             .send({
@@ -148,10 +148,10 @@ async function deleteTask(req, res) {
   }
 }
 
-// convertir esta función en asíncrona:
+
 async function changeTask(req, res) {
   const taskId = req.params.id;
-  // recuperar usuario actual a través del token:
+  // recover current user throgh token:
   const user = await authMiddleware.getUser(req, res);
 
   try {
@@ -162,7 +162,7 @@ async function changeTask(req, res) {
         if (!taskData) {
           res.status(400).send({ msg: "Error: Task doesn't exists" });
         } else if (taskData.owner != user.id) {
-          // añadir validación para comprobar que somos el propietario sino dará 403:
+          
           res
             .status(403)
             .send({
@@ -177,7 +177,6 @@ async function changeTask(req, res) {
             } else if (!result) {
               res.status(404).send({ msg: "Error: task doesn't exists" });
             } else if (taskData.owner != user.id) {
-              // añadir validación para comprobar que somos el propietario sino dará 403:
               res
                 .status(403)
                 .send({
